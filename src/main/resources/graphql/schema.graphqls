@@ -1,0 +1,29 @@
+type User {
+    uuid: ID!
+    name: String!
+    email: String!
+}
+
+type Task {
+    uuid: ID!
+    description: String
+    status: TaskStatus!
+    userId: String!
+}
+
+type Query {
+    taskById(uuid: ID!) : Task
+    userById(uuid: ID!) : User
+}
+
+type Mutation {
+    createUser(name: String!, email: String!, password: String!) : User
+    createTask(description: String!, userId: ID!) : Task
+}
+
+enum TaskStatus {
+    NEW
+    IN_PROGRESS
+    COMPLETED
+    CANCELED
+}
