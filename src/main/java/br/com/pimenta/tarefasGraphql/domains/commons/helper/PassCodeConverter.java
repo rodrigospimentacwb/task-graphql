@@ -1,6 +1,5 @@
 package br.com.pimenta.tarefasGraphql.domains.commons.helper;
 
-import br.com.pimenta.tarefasGraphql.domains.commons.exception.CommonExceptionResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

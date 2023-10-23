@@ -3,7 +3,6 @@ package br.com.pimenta.tarefasGraphql.domains.tasks.controller;
 import br.com.pimenta.tarefasGraphql.domains.commons.exception.exceptions.NotFoundException;
 import br.com.pimenta.tarefasGraphql.domains.tasks.model.Task;
 import br.com.pimenta.tarefasGraphql.domains.tasks.service.TaskService;
-import br.com.pimenta.tarefasGraphql.domains.users.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;

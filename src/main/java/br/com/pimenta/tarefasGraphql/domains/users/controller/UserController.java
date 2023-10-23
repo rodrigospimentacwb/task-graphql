@@ -1,7 +1,7 @@
 package br.com.pimenta.tarefasGraphql.domains.users.controller;
 
 import br.com.pimenta.tarefasGraphql.domains.commons.exception.exceptions.NotFoundException;
-import br.com.pimenta.tarefasGraphql.domains.users.model.User;
+import br.com.pimenta.tarefasGraphql.domains.users.entities.User;
 import br.com.pimenta.tarefasGraphql.domains.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;

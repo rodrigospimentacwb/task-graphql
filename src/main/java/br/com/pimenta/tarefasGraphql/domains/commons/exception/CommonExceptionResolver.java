@@ -17,13 +17,13 @@ public class CommonExceptionResolver extends DataFetcherExceptionResolverAdapter
     Logger logger = LoggerFactory.getLogger(CommonExceptionResolver.class);
 
     @Override
-    protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
+    public GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
         if (ex instanceof AssertException) {
             return GraphqlErrorBuilder.newError()
                     .errorType(ErrorType.BAD_REQUEST)
                     .message(ex.getMessage())
-                    .path(env.getExecutionStepInfo().getPath())
-                    .location(env.getField().getSourceLocation())
+//                    .path(env.getExecutionStepInfo().getPath())
+//                    .location(env.getField().getSourceLocation())
                     .build();
         }
         if (ex instanceof NotFoundException) {

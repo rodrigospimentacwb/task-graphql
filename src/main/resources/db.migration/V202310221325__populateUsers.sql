@@ -1,1 +1,3 @@
-INSERT INTO public.users (email, name, password) VALUES('admin@gmail.com', 'admin', '550e1bafe077ff0b0b67f4e32f29d751');
+INSERT INTO users
+("name", email, "password", "role")
+VALUES('admin', 'admin@gmail.com', '$2a$10$8aVDoyjEL0tj5Q9oX5wAZuLxrJ27LOoMEmK8e57l2DVBFnty7qp0y', 'ADMIN');

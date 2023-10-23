@@ -18,6 +18,7 @@ public class Task {
     @Column(name = "id")
     private UUID uuid;
     private String description;
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
     @Column(name = "userid")
     private UUID userId;
