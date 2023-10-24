@@ -1,12 +1,15 @@
-package br.com.pimenta.tarefasGraphql.domains.users.model;
+package br.com.pimenta.tarefasGraphql.domains.users.entity;
 
-import br.com.pimenta.tarefasGraphql.domains.commons.helper.PassCodeConverter;
-import jakarta.persistence.*;
+import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,11 +22,9 @@ public class User {
     private UUID uuid;
     private String name;
     private String email;
-    private String password;
 
-    public User(String name, String email, String password) {
+    public User(String name, String email) {
         this.name = name;
         this.email = email;
-        this.password = PassCodeConverter.toMd5(password);
     }
 }

@@ -1,15 +1,16 @@
 package br.com.pimenta.tarefasGraphql.domains.commons.exception;
 
-import br.com.pimenta.tarefasGraphql.domains.commons.exception.exceptions.NotFoundException;
-import graphql.AssertException;
-import graphql.GraphQLError;
-import graphql.GraphqlErrorBuilder;
-import graphql.schema.DataFetchingEnvironment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter;
 import org.springframework.graphql.execution.ErrorType;
 import org.springframework.stereotype.Component;
+
+import br.com.pimenta.tarefasGraphql.domains.commons.exception.exceptions.NotFoundException;
+import graphql.AssertException;
+import graphql.GraphQLError;
+import graphql.GraphqlErrorBuilder;
+import graphql.schema.DataFetchingEnvironment;
 
 @Component
 public class CommonExceptionResolver extends DataFetcherExceptionResolverAdapter {

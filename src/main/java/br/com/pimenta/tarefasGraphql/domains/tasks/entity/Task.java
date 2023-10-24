@@ -1,12 +1,18 @@
-package br.com.pimenta.tarefasGraphql.domains.tasks.model;
+package br.com.pimenta.tarefasGraphql.domains.tasks.entity;
+
+import java.util.UUID;
 
 import br.com.pimenta.tarefasGraphql.domains.tasks.enuns.TaskStatus;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -18,6 +24,7 @@ public class Task {
     @Column(name = "id")
     private UUID uuid;
     private String description;
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
     @Column(name = "userid")
     private UUID userId;

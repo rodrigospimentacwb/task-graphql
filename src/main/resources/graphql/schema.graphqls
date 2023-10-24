@@ -8,16 +8,18 @@ type Task {
     uuid: ID!
     description: String
     status: TaskStatus!
-    userId: String!
+    user: User!
 }
 
 type Query {
     taskById(uuid: ID!) : Task
     userById(uuid: ID!) : User
+    listUsers : [User]
+    findTasksByUserId(userId: ID!) : [Task]
 }
 
 type Mutation {
-    createUser(name: String!, email: String!, password: String!) : User
+    createUser(name: String!, email: String!) : User
     createTask(description: String!, userId: ID!) : Task
 }
 

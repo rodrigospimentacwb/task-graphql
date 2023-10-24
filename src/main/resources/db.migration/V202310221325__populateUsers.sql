@@ -1,1 +1,1 @@
-INSERT INTO public.users (email, name, password) VALUES('admin@gmail.com', 'admin', '550e1bafe077ff0b0b67f4e32f29d751');
+INSERT INTO public.users (email, name) VALUES('admin@gmail.com', 'admin');

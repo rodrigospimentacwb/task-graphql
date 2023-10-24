@@ -1,15 +1,17 @@
 package br.com.pimenta.tarefasGraphql.domains.users.service;
 
-import br.com.pimenta.tarefasGraphql.domains.commons.helper.PassCodeConverter;
-import br.com.pimenta.tarefasGraphql.domains.users.model.User;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import br.com.pimenta.tarefasGraphql.domains.users.entity.User;
 import br.com.pimenta.tarefasGraphql.domains.users.repository.UserRepository;
 import graphql.Assert;
 import jakarta.annotation.Resource;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -22,15 +24,19 @@ public class UserService {
         return repository.findById(uuid);
     }
 
-    public User createUser(String name, String email, String password) {
-        validateUser(name, email, password);
-        return repository.save(new User(name, email, PassCodeConverter.toMd5(password)));
+    public Optional<List<User>> listUsers() {
+        return Optional.ofNullable(repository.findAll());
     }
 
-    private void validateUser(String name, String email, String password) {
+    @Transactional
+    public User createUser(String name, String email) {
+        validateUser(name, email);
+        return repository.save(new User(name, email));
+    }
+
+    private void validateUser(String name, String email) {
         Assert.assertTrue(StringUtils.isNoneBlank(name), () -> "Nome é inválido");
         Assert.assertTrue(StringUtils.isNoneBlank(email), () -> "Formato do e-mail  é inválido");
-        Assert.assertTrue(StringUtils.isNoneBlank(password), () -> "Password é inválido");
         Assert.assertTrue(repository.findByEmail(email) == null, () -> "Email invalido");
     }
 }
