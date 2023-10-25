@@ -48,8 +48,16 @@ public class TaskController {
         return service.createTask(description, userId);
     }
 
-    updateTask
-    deleteTask
+    @MutationMapping
+    public Task updateTask(@Argument UUID uuid, @Argument TaskStatus taskStatus, @Argument String description) {
+        return service.updateTask(uuid, taskStatus, description);
+    }
+
+    @MutationMapping
+    public String deleteTask(@Argument UUID uuid) {
+        service.deleteTask(uuid);
+        return "Tarefa excluída com sucesso";
+    }
 
     @SchemaMapping
     public User user(Task task) {

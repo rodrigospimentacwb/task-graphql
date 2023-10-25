@@ -15,7 +15,7 @@ import br.com.pimenta.tarefasGraphql.domains.tasks.enuns.TaskStatus;
 @Repository
 public interface TaskRepository extends CrudRepository<Task, UUID> {
 
-    Optional<List<Task>> findAllTasks(UUID userId);
+    Optional<List<Task>> findTaskByUserId(UUID userId);
 
     List<Task> findAll();
 
