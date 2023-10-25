@@ -7,8 +7,8 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.pimenta.tarefasGraphql.domains.tasks.enuns.TaskStatus;
 import br.com.pimenta.tarefasGraphql.domains.tasks.entity.Task;
+import br.com.pimenta.tarefasGraphql.domains.tasks.enuns.TaskStatus;
 import br.com.pimenta.tarefasGraphql.domains.tasks.repository.TaskRepository;
 import br.com.pimenta.tarefasGraphql.domains.users.service.UserService;
 import graphql.Assert;
@@ -28,9 +28,18 @@ public class TaskService {
         return repository.findById(uuid);
     }
 
+    public Optional<List<Task>> listTasks() {
+        return Optional.ofNullable(repository.findAll());
+    }
+
     public Optional<List<Task>> findByUserId(UUID userId) {
         Assert.assertTrue(userId != null, () -> "UserId informado é inválido");
-        return repository.findByUserId(userId);
+        return repository.findAllTasks(userId);
+    }
+
+    public Optional<List<Task>> listTaskByStatus(TaskStatus status) {
+        Assert.assertTrue(status != null, () -> "Status informado é inválido");
+        return repository.findByStatus(status);
     }
 
     @Transactional
@@ -42,4 +51,5 @@ public class TaskService {
     private void validateTask(UUID userId) {
         Assert.assertTrue(userService.findBydId(userId).isPresent(), () -> "Usuário inválido");
     }
+
 }
