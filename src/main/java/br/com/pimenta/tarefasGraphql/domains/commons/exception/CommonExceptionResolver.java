@@ -1,5 +1,6 @@
 package br.com.pimenta.tarefasGraphql.domains.commons.exception;
 
+import br.com.pimenta.tarefasGraphql.domains.commons.exception.exceptions.ExecutionFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter;
@@ -30,6 +31,14 @@ public class CommonExceptionResolver extends DataFetcherExceptionResolverAdapter
         if (ex instanceof NotFoundException) {
             return GraphqlErrorBuilder.newError()
                     .errorType(ErrorType.NOT_FOUND)
+                    .message(ex.getMessage())
+                    .path(env.getExecutionStepInfo().getPath())
+                    .location(env.getField().getSourceLocation())
+                    .build();
+        }
+        if (ex instanceof ExecutionFailed) {
+            return GraphqlErrorBuilder.newError()
+                    .errorType(ErrorType.INTERNAL_ERROR)
                     .message(ex.getMessage())
                     .path(env.getExecutionStepInfo().getPath())
                     .location(env.getField().getSourceLocation())

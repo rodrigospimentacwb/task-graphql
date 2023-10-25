@@ -12,15 +12,25 @@ type Task {
 }
 
 type Query {
+    # Task Controller
+    listAllTasks : [Task]
     taskById(uuid: ID!) : Task
-    userById(uuid: ID!) : User
-    listUsers : [User]
+    listTaskByStatus (taskStatus : TaskStatus!) : [Task]
     findTasksByUserId(userId: ID!) : [Task]
+
+    # User Controller
+    listUsers : [User]
+    userById(uuid: ID!) : User
 }
 
 type Mutation {
-    createUser(name: String!, email: String!) : User
+    # Task Controller
     createTask(description: String!, userId: ID!) : Task
+    updateTask(uuid : ID!, taskStatus : TaskStatus!, description : String) : Task
+    deleteTask(uuid : ID!): String
+
+    # User Controller
+    createUser(name: String!, email: String!) : User
 }
 
 enum TaskStatus {

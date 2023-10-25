@@ -1,7 +1,6 @@
 package br.com.pimenta.tarefasGraphql.domains.tasks.controller;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.pimenta.tarefasGraphql.domains.commons.exception.exceptions.NotFoundException;
 import br.com.pimenta.tarefasGraphql.domains.tasks.entity.Task;
+import br.com.pimenta.tarefasGraphql.domains.tasks.enuns.TaskStatus;
 import br.com.pimenta.tarefasGraphql.domains.tasks.service.TaskService;
 import br.com.pimenta.tarefasGraphql.domains.users.entity.User;
 import br.com.pimenta.tarefasGraphql.domains.users.service.UserService;
@@ -32,9 +32,31 @@ public class TaskController {
                 .filter(tasks -> !tasks.isEmpty()).orElseThrow(() -> new NotFoundException("Nenhuma tarefa encontrada para o usuário"));
     }
 
+    @QueryMapping
+    public List<Task> listAllTasks() {
+        return service.listTasks().filter(tasks -> !tasks.isEmpty()).orElseThrow(() -> new NotFoundException("Nenhuma tarefa encontrado"));
+    }
+
+    @QueryMapping
+    public List<Task> listTaskByStatus(TaskStatus status) {
+        return service.listTaskByStatus(status).filter(tasks -> !tasks.isEmpty()).orElseThrow(() -> new NotFoundException("Nenhuma tarefa" +
+                " encontrado com status: " + status));
+    }
+
     @MutationMapping
     public Task createTask(@Argument String description, @Argument UUID userId) {
         return service.createTask(description, userId);
+    }
+
+    @MutationMapping
+    public Task updateTask(@Argument UUID uuid, @Argument TaskStatus taskStatus, @Argument String description) {
+        return service.updateTask(uuid, taskStatus, description);
+    }
+
+    @MutationMapping
+    public String deleteTask(@Argument UUID uuid) {
+        service.deleteTask(uuid);
+        return "Tarefa excluída com sucesso";
     }
 
     @SchemaMapping
