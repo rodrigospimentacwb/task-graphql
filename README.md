@@ -1,6 +1,6 @@
 # Projeto de AWS com Spring Boot 3, Java 21 e GraphQL
 
-Este é um projeto desenvolvido para a disciplina de AWS na PUC MG, utilizando Spring Boot 3, Java 21 e GraphQL. O projeto consiste em uma aplicação que gerencia usuários e tarefas em um banco de dados PostgreSQL.
+Este é um projeto desenvolvido para a disciplina de Apis e Web Services na PUC MG, utilizando Spring Boot 3, Java 21 e GraphQL. O projeto consiste em uma aplicação que gerencia usuários e tarefas em um banco de dados PostgreSQL.
 
 ## Pré-requisitos
 
