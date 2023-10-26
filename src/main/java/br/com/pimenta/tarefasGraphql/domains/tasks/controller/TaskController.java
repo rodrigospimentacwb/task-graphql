@@ -27,6 +27,12 @@ public class TaskController {
     UserService userService;
 
     @QueryMapping
+    public Task taskById(@Argument UUID uuid) {
+        return service.findBydId(uuid).orElseThrow(()
+                -> new NotFoundException("Tarefa não encontrada com ID: " + uuid));
+    }
+
+    @QueryMapping
     public List<Task> findTasksByUserId(@Argument UUID userId) {
         return service.findByUserId(userId)
                 .filter(tasks -> !tasks.isEmpty()).orElseThrow(() -> new NotFoundException("Nenhuma tarefa encontrada para o usuário"));
@@ -38,9 +44,9 @@ public class TaskController {
     }
 
     @QueryMapping
-    public List<Task> listTaskByStatus(TaskStatus status) {
-        return service.listTaskByStatus(status).filter(tasks -> !tasks.isEmpty()).orElseThrow(() -> new NotFoundException("Nenhuma tarefa" +
-                " encontrado com status: " + status));
+    public List<Task> listTaskByStatus(@Argument TaskStatus taskStatus) {
+        return service.listTaskByStatus(taskStatus).filter(tasks -> !tasks.isEmpty()).orElseThrow(() -> new NotFoundException("Nenhuma tarefa" +
+                " encontrado com status: " + taskStatus));
     }
 
     @MutationMapping

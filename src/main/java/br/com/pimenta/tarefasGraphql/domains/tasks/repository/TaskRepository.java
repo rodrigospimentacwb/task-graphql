@@ -19,6 +19,6 @@ public interface TaskRepository extends CrudRepository<Task, UUID> {
 
     List<Task> findAll();
 
-    @Query("SELECT t FROM tasks t WHERE UPPER(t.status) = UPPER(:status)")
+    @Query("SELECT t FROM tasks t WHERE t.status = :status ")
     Optional<List<Task>> findByStatus(@Param("status") TaskStatus status);
 }
